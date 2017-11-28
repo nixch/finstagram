@@ -13,7 +13,7 @@
             </div>
             <a class="photo" href="#">
                 <!-- link to go to when you click on image-->
-               <img src="<%= post.photo_url %>" alt="post from <%= post.user.username %>">
+               <img src="<%= post.photo_url %>" alt="post from <%= post[:username] %>">
             </a>
             <!-- anchor tag for teh power of linking-->
 
@@ -36,19 +36,7 @@
                 </li>
                  <% end %>
             </ul>
-   <ul class="comments">
-                <% post.fish.each do |fish| %>
-                <!-- Unordered list-->
-                <li>
-                    <!-- List item-->
-                    <p>
-                        <%= fish.user.username %>: <%= fish.text %>
-                    </p>
-                    <!-- tag signifies paragraph-->
 
-                </li>
-                 <% end %>
-            </ul>
        
            
 

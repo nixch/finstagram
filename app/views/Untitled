@@ -1,0 +1,13 @@
+   <ul class="comments">
+                <% post.fish.each do |fish| %>
+                <!-- Unordered list-->
+                <li>
+                    <!-- List item-->
+                    <p>
+                        <%= fish.user.username %>: <%= fish.text %>
+                    </p>
+                    <!-- tag signifies paragraph-->
+
+                </li>
+                 <% end %>
+            </ul>
