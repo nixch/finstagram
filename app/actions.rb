@@ -18,10 +18,12 @@ get '/login' do #if a user navigates to the path /login
     erb(:login) 
 end
 
+
+
 post '/login' do 
   #  params.to_s
     #when we submit a login
-   username = params[:username]
+  username = params[:username]
     password = params[:password]
     #find user by username
     user = User.find_by(username: username)
@@ -37,7 +39,7 @@ post '/login' do
        @error_message = "Login Failed"
        erb(:login)
     #"Liogin fail"
-   end
+    end
 end
     
 get '/logout'do
@@ -49,6 +51,29 @@ end
 
     #params.to_s  #display parameters for now to check it works
 
+get '/posts/:id' do   #GET HTTP method for displaying the form
+    @post = Post.find(params[:id])
+    # escape_html @post.inspect  #displays entry
+     erb(:"posts/show") #renders app version of teh post
+end
+
+get '/posts/new' do   #GET HTTP method for displaying the form
+   @post = Post.new
+    erb(:"posts/new")
+end
+
+post '/posts' do
+    photo_url = params[:photo_url]
+
+    @post = Post.new({ photo_url: photo_url, user_id: current_user.id })
+
+    if @post.save
+        redirect(to('/'))
+    else
+        erb(:"posts/new") 
+    
+    end
+end
 
 get '/signup' do #if a user navigates to the path /signup
     @user = User.new #setup empty @user object
@@ -66,10 +91,10 @@ password    = params[:password]
 #if email.present? && avatar_url.present? && username.present? && password.present?
     
 #instantiate and ave a User
-@user = User.new({ email: email, avatar_url: avatar_url, username: username, password: password})
-if @user.save
- redirect to('/login')
- else
+         @user = User.new({ email: email, avatar_url: avatar_url, username: username, password: password})
+        if @user.save
+            redirect to('/login')
+        else
      
  # "User #{username} saved!"
   
@@ -79,10 +104,8 @@ if @user.save
 
 #  "validation FAILED"  
 #escape_html user.errors.full_messages
-erb(:signup)
-end
+        erb(:signup)
+        end
 
 
-
-end
-    
+  end  

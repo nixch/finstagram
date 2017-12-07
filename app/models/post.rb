@@ -5,6 +5,8 @@ class Post < ActiveRecord::Base
     has_many :likes
     has_many :fish
     
+validates_presence_of :photo_url, :user
+    
 def humanized_time_ago
     time_ago_in_seconds = Time.now - self.created_at
     time_ago_in_minutes = time_ago_in_seconds / 60

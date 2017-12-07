@@ -10,6 +10,22 @@
     <title>Finstagram</title>
 </head>
 <body>
-    <%= yield %>
+    <header>
+        <h1>Finstagram</h1>
+        <div class="login-info">
+            <% if current_user %>
+             <%= current_user.username %>
+             <a href="/logout">LOGOUT</a>
+             <% else %>
+              <a href="/login">Login</a>
+              <a href="/signup">signup</a>
+              <% end %>
+        </div>
+        <!-- heading1 at the top of the page-->
+    </header>
+    <main role="main">
+        <%= yield %>  
+    </main>
+  
 </body>
 </html>
