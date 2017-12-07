@@ -1,6 +1,15 @@
 
     <header>
         <h1>Finstagram</h1>
+        <div class="login-info">
+            <% if current_user %>
+             <%= current_user.username %>
+             <a href="/logout">LOGOUT</a>
+             <% else %>
+              <a href="/login">Login</a>
+              <a href="/signup">signup</a>
+              <% end %>
+        </div>
         <!-- heading1 at the top of the page-->
     </header>
     <main role="main">
@@ -18,7 +27,7 @@
             <!-- anchor tag for teh power of linking-->
 
             <div class="actions">
-                <%= post.like_count %> likes
+                <%= post.like_count %> likes: <%= post.fish_count %> fish!
                 <span class="comment-count"><%= post.comment_count%> comments</span>
             </div>
 
@@ -36,20 +45,20 @@
                 </li>
                  <% end %>
             </ul>
-   <ul class="comments">
-                <% post.fish.each do |fish| %>
+   
+       <ul class="comments">
+                <% post.fish.each do |t| %>
                 <!-- Unordered list-->
                 <li>
                     <!-- List item-->
                     <p>
-                        <%= fish.user.username %>: <%= fish.text %>
+                        <%= t.user.username %>: <%= t.name %>
                     </p>
                     <!-- tag signifies paragraph-->
 
                 </li>
                  <% end %>
             </ul>
-       
            
 
         </article>

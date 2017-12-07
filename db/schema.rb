@@ -20,16 +20,10 @@ ActiveRecord::Schema.define(version: 2) do
     t.datetime "updated_at"
   end
 
-  create_table "customers", force: :cascade do |t|
-    t.text "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "fish", force: :cascade do |t|
+    t.text "name"
     t.integer "user_id"
     t.integer "post_id"
-    t.text "fish"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_fish_on_post_id"

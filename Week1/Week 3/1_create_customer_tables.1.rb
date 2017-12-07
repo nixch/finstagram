@@ -1,12 +1,12 @@
-class CreateBaseTables < ActiveRecord::Migration[5.0]
+class CreateCustomerfishTables < ActiveRecord::Migration[5.0]
 
   def change
 
     
   create_table :fish do |t|
+      t.text :name
       t.references :user
       t.references :post
-      t.text :fish
       t.timestamps
     end
 

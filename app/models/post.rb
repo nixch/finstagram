@@ -3,6 +3,7 @@ class Post < ActiveRecord::Base
     belongs_to :user
     has_many :comments
     has_many :likes
+    has_many :fish
     
 def humanized_time_ago
     time_ago_in_seconds = Time.now - self.created_at
@@ -28,5 +29,8 @@ def comment_count
     self.comments.size
 end
 
+def fish_count
+    self.fish.size
+end
 
 end
