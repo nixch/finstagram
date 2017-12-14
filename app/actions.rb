@@ -8,6 +8,22 @@ helpers do
 end
 
 
+
+post '/likes' do
+    post_id = params[:post_id]
+    like = Like.new ({  post_id: post_id , user_id: current_user.id})
+    like.save
+    redirect (back)
+
+end
+
+
+delete '/likes/:id' do
+    like = Like.find(params[:id])
+    like.destroy
+    redirect (back)
+end
+
 get '/' do
 @posts = Post.order(created_at: :desc)  
 #@current_user = User.find_by(id: session[:user_id])
@@ -80,6 +96,15 @@ get '/signup' do #if a user navigates to the path /signup
     erb(:signup)  #render "app/views/signup.erb"
 end
 
+post '/comments' do
+    text =params[:text]
+    post_id =params[:post_id]
+    comment = Comment.new({ text: text, user_id: current_user.id, post_id: post_id })
+    comment.save
+   redirect (back)
+
+end
+
 post '/signup' do
     #"Form Submitted!"
     #params.to_s #shows you all the parameter avavailable and the entered information 
@@ -90,7 +115,7 @@ username    = params[:username]
 password    = params[:password]
 #if email.present? && avatar_url.present? && username.present? && password.present?
     
-#instantiate and ave a User
+#instantiate and save a User
          @user = User.new({ email: email, avatar_url: avatar_url, username: username, password: password})
         if @user.save
             redirect to('/login')
